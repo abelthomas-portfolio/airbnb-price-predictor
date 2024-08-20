@@ -1,6 +1,10 @@
 import streamlit as st
 import numpy as np
 import pickle
+import sklearn
+
+print(sklearn.__version__)
+
 
 # Load your trained model using pickle
 with open('final_gradient_boosting_model_pickle.pkl', 'rb') as file:
