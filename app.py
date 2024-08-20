@@ -8,7 +8,7 @@ print(sklearn.__version__)
 
 # Load your trained model using pickle
 with open('final_gradient_boosting_model_pickle.pkl', 'rb') as file:
-    model = pickle.load(file)
+    final_gb = pickle.load(file)
 
 # Title of the app
 st.title("Airbnb Price Prediction in San Francisco")
@@ -29,7 +29,7 @@ room_type_shared_room = 1 if room_type_shared_room == 'Yes' else 0
 input_data = np.array([[bedrooms, accommodates, review_scores_rating, bathrooms, room_type_private_room, room_type_shared_room]])
 
 # Make the prediction
-prediction = model.predict(input_data)
+prediction = final_gb.predict(input_data)
 
 # Display the prediction
 st.write(f"Predicted Price: {np.exp(prediction[0]):.2f}")
