@@ -3,7 +3,7 @@ import numpy as np
 import pickle
 
 # Load your trained model using pickle
-with open('final_gradient_boosting_model.pkl', 'rb') as file:
+with open('final_gradient_boosting_model_pickle.pkl', 'rb') as file:
     model = pickle.load(file)
 
 # Title of the app
