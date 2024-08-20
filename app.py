@@ -1,40 +1,38 @@
 import streamlit as st
-import numpy as np
 import joblib
+import numpy as np
 
 # Load your trained model
 model = joblib.load('final_gradient_boosting_model.pkl')
 
+# Title of the app
 st.title("Airbnb Price Prediction in San Francisco")
 
-# Sidebar for user input
-st.sidebar.header('User Input Parameters')
+# Instructions for the user
+st.write("Enter the details of the property below to predict the price:")
 
-def user_input_features():
-    bedrooms = st.sidebar.slider('Bedrooms', 1, 10, 1)
-    accommodates = st.sidebar.slider('Accommodates', 1, 10, 2)
-    bathrooms = st.sidebar.slider('Bathrooms', 1, 5, 1)
-    review_scores_rating = st.sidebar.slider('Review Scores Rating', 0.0, 100.0, 90.0)
-    room_type_private = st.sidebar.selectbox('Is it a Private Room?', ('Yes', 'No'))
-    room_type_shared = st.sidebar.selectbox('Is it a Shared Room?', ('Yes', 'No'))
-    
-    data = {
-        'bedrooms': bedrooms,
-        'accommodates': accommodates,
-        'review_scores_rating': review_scores_rating,
-        'room_type_Private room': 1 if room_type_private == 'Yes' else 0,
-        'bathrooms': bathrooms,
-        'room_type_Shared room': 1 if room_type_shared == 'Yes' else 0
-    }
-    features = np.array([list(data.values())])
-    return features
+# Input fields for user data
+bedrooms = st.number_input("Number of Bedrooms", min_value=0, max_value=10, value=1)
+accommodates = st.number_input("Accommodates (Number of Guests)", min_value=0, max_value=20, value=1)
+review_scores_rating = st.number_input("Review Scores Rating", min_value=0.0, max_value=100.0, value=50.0)
+bathrooms = st.number_input("Number of Bathrooms", min_value=0.0, max_value=10.0, value=1.0)
+room_type_private = st.checkbox("Private Room?")
+room_type_shared = st.checkbox("Shared Room?")
 
-input_df = user_input_features()
+# Prepare the input data for prediction
+data = np.array([
+    [
+        bedrooms,
+        accommodates,
+        review_scores_rating,
+        1 if room_type_private else 0,
+        bathrooms,
+        1 if room_type_shared else 0,
+    ]
+])
 
-# Prediction
-prediction = model.predict(input_df)
-predicted_price = np.exp(prediction)[0]  # Convert log price back to the actual price
-
-st.subheader('Prediction')
-st.write(f"The predicted price is: ${predicted_price:.2f}")
-
+# Predict price using the model
+if st.button("Predict Price"):
+    predicted_log_price = model.predict(data)[0]
+    predicted_price = np.exp(predicted_log_price)
+    st.write(f"The predicted price is ${predicted_price:.2f}")
