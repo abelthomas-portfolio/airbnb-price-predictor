@@ -4,7 +4,7 @@ import numpy as np
 import joblib
 
 # Load the trained model
-model = joblib.load('final_gradient_boosting_model_v2.pkl')
+model = joblib.load('final_gradient_boosting_model.pkl')
 
 # Title of the app
 st.title('Airbnb Price Predictor')
