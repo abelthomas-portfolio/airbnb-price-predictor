@@ -1,35 +1,39 @@
 import streamlit as st
+import pandas as pd
 import numpy as np
-import pickle
-import sklearn
+import joblib
 
-print(sklearn.__version__)
-
-
-# Load your trained model using pickle
-with open('final_gradient_boosting_model_pickle.pkl', 'rb') as file:
-    final_gb = pickle.load(file)
+# Load the trained model
+model = joblib.load('final_gradient_boosting_model.pkl')
 
 # Title of the app
-st.title("Airbnb Price Prediction in San Francisco")
+st.title('Airbnb Price Predictor')
 
-# Add input fields for user data
-bedrooms = st.number_input('Number of Bedrooms', min_value=1, max_value=10, value=1)
-accommodates = st.number_input('Number of Guests Accommodated', min_value=1, max_value=20, value=2)
-review_scores_rating = st.slider('Review Scores Rating', min_value=0.0, max_value=100.0, value=95.0)
-bathrooms = st.number_input('Number of Bathrooms', min_value=1.0, max_value=10.0, value=1.0)
-room_type_private_room = st.selectbox('Private Room', ['Yes', 'No'])
-room_type_shared_room = st.selectbox('Shared Room', ['Yes', 'No'])
+# Subtitle
+st.subheader('Predict the price of an Airbnb listing in San Francisco')
 
-# Convert inputs into a format suitable for the model
-room_type_private_room = 1 if room_type_private_room == 'Yes' else 0
-room_type_shared_room = 1 if room_type_shared_room == 'Yes' else 0
+# Input features
+bedrooms = st.number_input('Number of Bedrooms', min_value=0, max_value=10, value=1)
+accommodates = st.number_input('Accommodates', min_value=1, max_value=20, value=1)
+review_scores_rating = st.slider('Review Scores Rating', min_value=0.0, max_value=100.0, value=75.0)
+bathrooms = st.number_input('Number of Bathrooms', min_value=0.0, max_value=10.0, value=1.0)
+room_type = st.selectbox('Room Type', ['Entire home/apt', 'Private room', 'Shared room'])
 
-# Prepare input data for prediction
-input_data = np.array([[bedrooms, accommodates, review_scores_rating, bathrooms, room_type_private_room, room_type_shared_room]])
+# Prepare the input data
+room_type_private = 1 if room_type == 'Private room' else 0
+room_type_shared = 1 if room_type == 'Shared room' else 0
 
-# Make the prediction
-prediction = final_gb.predict(input_data)
+input_data = pd.DataFrame({
+    'bedrooms': [bedrooms],
+    'accommodates': [accommodates],
+    'review_scores_rating': [review_scores_rating],
+    'bathrooms': [bathrooms],
+    'room_type_Private room': [room_type_private],
+    'room_type_Shared room': [room_type_shared],
+})
 
-# Display the prediction
-st.write(f"Predicted Price: {np.exp(prediction[0]):.2f}")
+# Prediction
+if st.button('Predict Price'):
+    log_price_pred = model.predict(input_data)[0]
+    price_pred = np.exp(log_price_pred)  # Inverse of log transformation
+    st.write(f'Predicted Price: ${price_pred:.2f}')
