@@ -27,8 +27,8 @@ input_data = pd.DataFrame({
     'bedrooms': [bedrooms],
     'accommodates': [accommodates],
     'review_scores_rating': [review_scores_rating],
-    'bathrooms': [bathrooms],
     'room_type_Private room': [room_type_private],
+    'bathrooms': [bathrooms],
     'room_type_Shared room': [room_type_shared],
 })
 
