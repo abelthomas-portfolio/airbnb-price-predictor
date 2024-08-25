@@ -32,24 +32,16 @@ input_data = pd.DataFrame({
     'room_type_Shared room': [room_type_shared],
 })
 
-# Prediction
-if st.button('Predict Price'):
-    log_price_pred = model.predict(input_data)[0]
-    price_pred = np.exp(log_price_pred)  # Inverse of log transformation
-    st.write(f'Predicted Price: ${price_pred:.2f}')
-    
-# Add a download button for the project report PDF
+# Add a viewing window for the project report PDF
 st.write("\n\n")
 st.title('Project Report')
 st.subheader('Predicting Airbnb Prices - A Machine Learning Approach')
 
-# Read the PDF file as binary
-with open("Predicting Airbnb Prices - A Machine Learning Approach.pdf", "rb") as file:
-    pdf_data = file.read()
+# Display the PDF file in a viewing window
+pdf_file_path = "Predicting Airbnb Prices - A Machine Learning Approach.pdf"
 
-st.download_button(
-    label="Download Report",
-    data=pdf_data,
-    file_name='Predicting Airbnb Prices - A Machine Learning Approach.pdf',
-    mime='application/pdf'
-)
+with open(pdf_file_path, "rb") as file:
+    base64_pdf = base64.b64encode(file.read()).decode('utf-8')
+
+pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
+st.markdown(pdf_display, unsafe_allow_html=True)
