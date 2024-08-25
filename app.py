@@ -38,32 +38,17 @@ if st.button('Predict Price'):
     price_pred = np.exp(log_price_pred)  # Inverse of log transformation
     st.write(f'Predicted Price: ${price_pred:.2f}')
     
-# Add a download button for the project report
+# Add a download button for the project report PDF
 st.write("\n\n")
-st.subheader('Download Project Report')
-report_content = """
-# Predicting Airbnb Prices - A Machine Learning Approach
+st.subheader('Download "Predicting Airbnb Prices - A Machine Learning Approach" (Project Report)')
 
-This report provides an overview of the development of the Airbnb Price Prediction model.
-
-## Model Details
-- **Model Type**: Gradient Boosting Regressor
-- **Features Used**: 
-  - Number of Bedrooms
-  - Accommodates
-  - Average Review Rating
-  - Number of Bathrooms
-  - Room Type (Entire home/apt, Private room, Shared room)
-- **Target Variable**: Log-transformed price of Airbnb listings in San Francisco
-
-## How to Use the App
-1. Input the number of bedrooms, accommodates, average review rating, number of bathrooms, and room type.
-2. Click the 'Predict Price' button to get the predicted price for the Airbnb listing.
-"""
+# Read the PDF file as binary
+with open("Predicting Airbnb Prices - A Machine Learning Approach.pdf", "rb") as file:
+    pdf_data = file.read()
 
 st.download_button(
     label="Download Report",
-    data=report_content,
+    data=pdf_data,
     file_name='Predicting Airbnb Prices - A Machine Learning Approach.pdf',
-    mime='text/plain'
+    mime='application/pdf'
 )
