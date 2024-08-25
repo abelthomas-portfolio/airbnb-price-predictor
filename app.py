@@ -41,8 +41,16 @@ if st.button('Predict Price'):
 
 # Add a viewing window for the project report PDF
 st.write("\n\n")
-st.title('Project Report')
-st.subheader('Predicting Airbnb Prices - A Machine Learning Approach')
+
+# Right-aligned title and subtitle using HTML and CSS
+st.markdown(
+    """
+    <div style="text-align: right;">
+        <h1>Project Report</h1>
+        <h2>Predicting Airbnb Prices - A Machine Learning Approach</h2>
+    </div>
+    """, unsafe_allow_html=True
+)
 
 # Display the PDF file in a viewing window
 pdf_file_path = "Predicting Airbnb Prices - A Machine Learning Approach.pdf"
