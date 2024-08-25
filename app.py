@@ -33,6 +33,12 @@ input_data = pd.DataFrame({
     'room_type_Shared room': [room_type_shared],
 })
 
+# Prediction
+if st.button('Predict Price'):
+    log_price_pred = model.predict(input_data)[0]
+    price_pred = np.exp(log_price_pred)  # Inverse of log transformation
+    st.write(f'Predicted Price: ${price_pred:.2f}')
+
 # Add a viewing window for the project report PDF
 st.write("\n\n")
 st.title('Project Report')
