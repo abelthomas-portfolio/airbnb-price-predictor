@@ -44,7 +44,7 @@ st.subheader('Download Project Report')
 report_content = """
 # Predicting Airbnb Prices - A Machine Learning Approach
 
-This report provides an overview of the Airbnb Price Predictor web application and the underlying model.
+This report provides an overview of the development of the Airbnb Price Prediction model.
 
 ## Model Details
 - **Model Type**: Gradient Boosting Regressor
