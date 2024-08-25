@@ -40,7 +40,8 @@ if st.button('Predict Price'):
     
 # Add a download button for the project report PDF
 st.write("\n\n")
-st.subheader('Download "Predicting Airbnb Prices - A Machine Learning Approach" (Project Report)')
+st.header('Project Report')
+st.subheader('"Predicting Airbnb Prices - A Machine Learning Approach"')
 
 # Read the PDF file as binary
 with open("Predicting Airbnb Prices - A Machine Learning Approach.pdf", "rb") as file:
