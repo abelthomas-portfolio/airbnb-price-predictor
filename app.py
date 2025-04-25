@@ -40,17 +40,3 @@ if st.button('Predict Price'):
     price_pred = np.exp(log_price_pred)  # Inverse of log transformation
     st.write(f'Predicted Price: ${price_pred:.2f}')
 
-# Add a viewing window for the project report PDF
-st.write("\n\n")
-
-st.title('Project Report')
-st.subheader('Predicting Airbnb Prices - A Machine Learning Approach')
-
-# Display the PDF file in a viewing window
-pdf_file_path = "Predicting Airbnb Prices - A Machine Learning Approach.pdf"
-
-with open(pdf_file_path, "rb") as file:
-    base64_pdf = base64.b64encode(file.read()).decode('utf-8')
-
-pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
-st.markdown(pdf_display, unsafe_allow_html=True)
