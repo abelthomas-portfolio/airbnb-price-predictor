@@ -95,7 +95,7 @@ Or check out the deployed version [here](#) *(google.com)*
 ## 📘 Documentation
 
 The complete methodology, rationale, analysis steps, and evaluation results are provided in:
-- [`reports/"Predicting Airbnb Prices - A Machine Learning Approach.pdf"`](reports/"Predicting Airbnb Prices - A Machine Learning Approach.pdf")
+- [`reports/Predicting Airbnb Prices – A Machine Learning Approach.pdf`](reports/Predicting%20Airbnb%20Prices%20–%20A%20Machine%20Learning%20Approach.pdf)
 
 ---
 
