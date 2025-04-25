@@ -3,10 +3,9 @@ import pandas as pd
 import numpy as np
 import cloudpickle
 import base64
-import os
+from pathlib import Path
 
-# Build full path to the model
-model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'final_model.pkl')
+model_path = Path(__file__).resolve().parent.parent / "models" / "final_model.pkl"
 
 try:
     with open(model_path, 'rb') as f:
