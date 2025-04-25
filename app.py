@@ -1,11 +1,12 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import joblib
+import cloudpickle
 import base64
 
 # Load the trained model
-model = joblib.load('final_gradient_boosting_model_v3.pkl')
+with open('final_model_cloudpickle.pkl', 'rb') as f:
+    model = cloudpickle.load(f)
 
 # Title of the app
 st.title('Airbnb Price Predictor')
