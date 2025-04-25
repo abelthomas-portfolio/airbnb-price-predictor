@@ -87,7 +87,7 @@ Or check out the deployed version *([here](https://airbnb-price-predictor-abelth
 ## 📈 Key Technologies
 
 - **Languages:** Python
-- **Libraries:** pandas, numpy, scikit-learn, seaborn, matplotlib, SHAP, cloudpickle, Streamlit
+- **Libraries:** pandas, numpy, scikit-learn, seaborn, matplotlib, SHAP, pickle, Streamlit
 - **Tools:** Jupyter, Git, Streamlit Cloud
 
 ---
