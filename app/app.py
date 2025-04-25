@@ -18,7 +18,7 @@ st.subheader('Predict the price of an Airbnb listing in San Francisco')
 
 # Input features
 bedrooms = st.number_input('Number of Bedrooms', min_value=0, max_value=10, value=1)
-accommodates = st.number_input('Accommodates', min_value=1, max_value=20, value=1)
+accommodates = st.number_input('Accommodates', min_value=1, max_value=10, value=1)
 review_scores_rating = st.number_input('Average Review Rating', min_value=0.0, max_value=100.0, value=75.0)
 bathrooms = st.number_input('Number of Bathrooms', min_value=0.0, max_value=10.0, value=1.0, step=0.5, format="%.1f")
 room_type = st.selectbox('Room Type', ['Entire home/apt', 'Private room', 'Shared room'])
