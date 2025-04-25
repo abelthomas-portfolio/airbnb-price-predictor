@@ -3,10 +3,23 @@ import pandas as pd
 import numpy as np
 import cloudpickle
 import base64
+import os
+
+# Build full path to the model
+model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'final_model.pkl')
+
+try:
+    with open(model_path, 'rb') as f:
+        model = cloudpickle.load(f)
+    st.success("✅ Model loaded successfully.")
+except FileNotFoundError:
+    st.error(f"❌ Model file not found at: {model_path}")
+except Exception as e:
+    st.error(f"❌ Error loading model: {e}")
 
 # Load the trained model
-with open('../models/final_model.pkl', 'rb') as f:
-    model = cloudpickle.load(f)
+# with open('../models/final_model.pkl', 'rb') as f:
+#    model = cloudpickle.load(f)
 
 # Title of the app
 st.title('Airbnb Price Predictor')
