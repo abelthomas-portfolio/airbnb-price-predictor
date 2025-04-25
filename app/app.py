@@ -7,6 +7,9 @@ from pathlib import Path
 
 model_path = Path(__file__).resolve().parent.parent / "models" / "final_model.pkl"
 
+with open(model_path, "rb") as f:
+        model = cloudpickle.load(f)
+
 # Title of the app
 st.title('Airbnb Price Predictor')
 
