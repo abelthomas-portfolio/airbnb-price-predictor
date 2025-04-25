@@ -5,7 +5,7 @@ import cloudpickle
 import base64
 
 # Load the trained model
-with open('final_model.pkl', 'rb') as f:
+with open('../models/final_model.pkl', 'rb') as f:
     model = cloudpickle.load(f)
 
 # Title of the app
