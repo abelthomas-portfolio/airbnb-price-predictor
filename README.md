@@ -80,7 +80,7 @@ To run the app locally:
 ```bash
 streamlit run app/app.py
 ```
-Or check out the deployed version [here](#) *(google.com)*
+Or check out the deployed version *([here](https://airbnb-price-predictor-abelthomas.streamlit.app/))*
 
 ---
 
